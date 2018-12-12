@@ -38,7 +38,12 @@ export default new Vuex.Store({
         },
         deleteTodo(context, index) {
             console.log(context)
-            context.commit('deleteTodo', index)
+            if(context.state.todos[index].done) {
+                context.commit('deleteTodo', index)
+            } else {
+                console.log("please finish todo before deleting")
+                return
+            }
         },
         toggleDone(context, index) {
             context.commit('toggleDone', index)
