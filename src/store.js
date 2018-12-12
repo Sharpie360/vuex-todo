@@ -23,12 +23,26 @@ export default new Vuex.Store({
                 title: state.newTodo,
                 completed: false
             })
+        },
+        deleteTodo(state, index) {
+            state.todos.splice(index, 1)
+        },
+        toggleDone(state, index) {
+            state.todos[index].done = !state.todos[index].done
         }
     },
     actions: {
         addTodo(context) {
             context.commit('addTodo')
             context.commit('setNewTodo', '')
+        },
+        deleteTodo(context, index) {
+            console.log(context)
+            context.commit('deleteTodo', index)
+        },
+        toggleDone(context, index) {
+            context.commit('toggleDone', index)
+            console.log(`Todo ${index + 1}: `, context.state.todos[index].done)
         }
     }
 })

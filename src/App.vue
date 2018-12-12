@@ -8,7 +8,7 @@
     </form>
     <ul>
       <li v-for="(todo, i) in todos" :key="i">
-        {{ i + 1 }}. {{ todo.title }} 
+        <span @click="deleteTodo(i)">{{ i + 1 }}. {{ todo.title }}</span><span><input type="checkbox" name="done" id="" :checked="todos[i].done" @click="toggleDone(i)"></span> 
       </li>
     </ul>
   </div>
@@ -31,7 +31,7 @@ export default {
     ...mapState(['title', 'todos'])
   },
   methods: {
-    ...mapActions(['addTodo'])
+    ...mapActions(['addTodo', 'deleteTodo', 'toggleDone'])
   }
 };
 </script>
